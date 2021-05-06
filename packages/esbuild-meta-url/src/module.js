@@ -15,7 +15,7 @@ export default function pluginFileUrl(files) {
     return {
         name,
         setup(build) {
-            const ext = Object.keys(files);
+            const ext = Object.keys(files).filter((key) => files[key]);
 
             let dirPrepare;
 
