@@ -1,0 +1,6 @@
+@import "./button.css";
+
+:host {
+    width: 100px;
+    height: 100px;
+}

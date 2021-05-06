@@ -1,0 +1,53 @@
+{
+    "name": "@uppercod/esbuild-jsx-runtime",
+    "type": "module",
+    "version": "1.0.0",
+    "description": "Plugin to lightly support jsx-runtime when using esbuild",
+    "main": "./plugin.cjs",
+    "module": "./src/plugin.js",
+    "types": "./plugin.d.ts",
+    "exports": {
+        ".": {
+            "import": "./src/plugin.js",
+            "require": "./plugin.cjs"
+        }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "types": "tsc",
+        "build": "rollup -c",
+        "dev": "rollup -c -w",
+        "test": "ava",
+        "prepublishOnly": "npm test && npm run build && npm run types"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/UpperCod/esbuild-plugin.git"
+    },
+    "author": "UpperCod",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/UpperCod/esbuild-plugin/issues"
+    },
+    "homepage": "https://github.com/UpperCod/esbuild-plugin#readme",
+    "devDependencies": {
+        "ava": "^3.10.1",
+        "rollup": "^2.21.0",
+        "typescript": "^4.2.4"
+    },
+    "ava": {
+        "files": [
+            "tests/**/*.test.js"
+        ]
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "singleQuote": false
+    },
+    "dependencies": {
+        "esbuild": "latest",
+        "magic-string": "latest"
+    }
+}
