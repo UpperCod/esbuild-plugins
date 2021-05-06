@@ -16,10 +16,12 @@ import style from "./style.css";
 console.log(style.href);
 ```
 
-### [@uppercod/esbuild-external](./packages/esbuild-external/README.md)
-
-## Ideas
+## Todo
 
 ### @uppercod/esbuild-globs 💡
 
+that the entries respond to search by expressions
+
 ### @uppercod/esbuild-sizes 💡
+
+Expect to generate output file size metric
