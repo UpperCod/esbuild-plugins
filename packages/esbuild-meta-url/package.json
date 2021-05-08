@@ -1,8 +1,8 @@
 {
     "name": "@uppercod/esbuild-meta-url",
     "type": "module",
-    "version": "1.1.1",
-    "description": "Capture text fragments based on regular expressions that are executed for each line of the text",
+    "version": "1.1.2",
+    "description": "Transforms the import of a file a URL.href based on module esm",
     "main": "./module.cjs",
     "module": "./src/module.js",
     "types": "./module.d.ts",
