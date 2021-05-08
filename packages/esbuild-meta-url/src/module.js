@@ -69,7 +69,7 @@ export default function pluginFileUrl(files) {
                     // sawait fs.copyFile(options.path, dest);
                 }
                 return {
-                    contents: `export default new URL("./${id}",import.meta.url)`,
+                    contents: `export default new URL("./${id}",import.meta.url).href`,
                 };
             });
         },
