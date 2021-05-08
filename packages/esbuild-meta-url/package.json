@@ -1,7 +1,7 @@
 {
     "name": "@uppercod/esbuild-meta-url",
     "type": "module",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "Capture text fragments based on regular expressions that are executed for each line of the text",
     "main": "./module.cjs",
     "module": "./src/module.js",
