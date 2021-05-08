@@ -26,6 +26,7 @@ export default function pluginFileUrl(files) {
             const filter = RegExp(`\\.(${ext.join("|")})$`);
 
             const {
+                watch,
                 outdir,
                 splitting,
                 loader,
