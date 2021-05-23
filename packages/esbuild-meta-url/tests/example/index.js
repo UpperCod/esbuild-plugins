@@ -1,3 +1,4 @@
 import style from "./style.css";
+import circle from "./circle.svg";
 
-console.log(style);
+console.log({ style, circle });

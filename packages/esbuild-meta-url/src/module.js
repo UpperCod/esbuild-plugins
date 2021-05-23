@@ -8,7 +8,7 @@ const normalize = (src) => path.relative(cwd, src).replace(/\\/, "/");
 const name = "esbuild-meta-url";
 
 /**
- * @param {Object<string,boolean|(file:File)=>(Promise<string>|string)} files
+ * @param {Object<string,boolean|(file:File)=>(Promise<Resolve>|Resolve)} files
  * @returns {import("esbuild").Plugin}
  */
 export default function pluginFileUrl(files) {
@@ -25,15 +25,12 @@ export default function pluginFileUrl(files) {
 
             const filter = RegExp(`\\.(${ext.join("|")})$`);
 
-            const {
-                watch,
-                outdir,
-                splitting,
-                loader,
-                ...share
-            } = build.initialOptions;
+            const { watch, outdir, splitting, loader, ...share } =
+                build.initialOptions;
 
-            share.plugins = share.plugins.filter(({ name }) => name != name);
+            share.plugins = share.plugins.filter(
+                (plugin) => plugin.name != name
+            );
 
             const prepareDir = () =>
                 (dirPrepare =
@@ -51,14 +48,17 @@ export default function pluginFileUrl(files) {
             build.onLoad({ filter }, async (options) => {
                 const src = normalize(options.path);
                 const { ext, name, base } = path.parse(src);
-                const type = ext.replace(".");
+
+                const type = ext.replace(".", "");
+
                 let id = entry[src] ? base : name + "-" + hash(src) + ext;
+
                 const dest = path.join(build.initialOptions.outdir, id);
 
                 await prepareDir();
 
-                if (typeof loader[type] == "function") {
-                    id = await loader[type]({ id, src, type, dest });
+                if (typeof files[type] == "function") {
+                    id = await files[type]({ id, src, type, dest, share });
                 } else if (!ready[src]) {
                     ready[src] = true;
                     await esbuild.build({
@@ -70,7 +70,9 @@ export default function pluginFileUrl(files) {
                     // sawait fs.copyFile(options.path, dest);
                 }
                 return {
-                    contents: `export default new URL("./${id}",import.meta.url).href`,
+                    contents: id.inline
+                        ? id.inline
+                        : `export default new URL("./${id}",import.meta.url).href`,
                 };
             });
         },
@@ -84,4 +86,9 @@ export default function pluginFileUrl(files) {
  * @property {string} src
  * @property {string} type
  * @property {string} dest
+ * @property {any} share - Configuration inherited from esbuild
+ */
+
+/**
+ * @typedef {string|{inline:string}} Resolve
  */

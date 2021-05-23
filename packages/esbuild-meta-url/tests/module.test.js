@@ -12,7 +12,12 @@ test("simple replace", async (t) => {
         splitting: true,
         loader: {},
         minify: true,
-        plugins: [pluginMetaUrl({ css: true })],
+        plugins: [
+            pluginMetaUrl({
+                css: true,
+                svg: async () => ({ inline: "export default `<svg>`;" }),
+            }),
+        ],
     });
 
     t.is(
