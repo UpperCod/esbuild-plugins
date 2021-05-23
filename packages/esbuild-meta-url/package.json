@@ -1,7 +1,7 @@
 {
     "name": "@uppercod/esbuild-meta-url",
     "type": "module",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "Transforms the import of a file a URL.href based on module esm",
     "main": "./module.cjs",
     "module": "./src/module.js",

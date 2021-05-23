@@ -69,6 +69,7 @@ export default function pluginFileUrl(files) {
                     // sawait fs.copyFile(options.path, dest);
                 }
                 return {
+                    loader: "js",
                     contents: id.inline
                         ? id.inline
                         : `export default new URL("./${id}",import.meta.url).href`,
