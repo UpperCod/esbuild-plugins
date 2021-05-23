@@ -1,7 +1,7 @@
 {
     "name": "@uppercod/esbuild-jsx-runtime",
     "type": "module",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Plugin to lightly support jsx-runtime when using esbuild",
     "main": "./plugin.cjs",
     "module": "./src/plugin.js",
