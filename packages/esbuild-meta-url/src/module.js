@@ -25,8 +25,7 @@ export default function pluginFileUrl(files) {
 
             const filter = RegExp(`\\.(${ext.join("|")})$`);
 
-            const { watch, outdir, splitting, loader, ...share } =
-                build.initialOptions;
+            const { watch, outdir, splitting, ...share } = build.initialOptions;
 
             share.plugins = share.plugins.filter(
                 (plugin) => plugin.name != name
