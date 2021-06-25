@@ -1,3 +1,4 @@
+import path from "path";
 import { readFile } from "fs/promises";
 import MagicString from "magic-string";
 
@@ -33,7 +34,7 @@ export default function pluginsJsxRuntime({
                         code.toString() +
                         "\n//# sourceMappingURL=" +
                         map.toUrl(),
-                    loader: "jsx",
+                    loader: path.extname(args.path).slice(1),
                 };
             });
         },
