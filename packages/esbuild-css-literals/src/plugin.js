@@ -13,9 +13,14 @@ import postcssLoadConfig from "postcss-load-config";
 export default function pluginsJsxRuntime(options) {
     return {
         name: "esbuild-css-literals",
-        setup(build) {
-            let currentConfigPostCss =
-                options?.postcss && postcssLoadConfig({ parser: true });
+        async setup(build) {
+            let currentConfigPostCss;
+
+            if (options.postcss) {
+                try {
+                    currentConfigPostCss = await postcssLoadConfig();
+                } catch (e) {}
+            }
 
             build.onLoad({ filter: /\.[jt]s(x){0,1}$/ }, async (args) => {
                 const code = await readFile(args.path, "utf8");
@@ -30,9 +35,8 @@ export default function pluginsJsxRuntime(options) {
                         .map(async ({ start, end }) => {
                             let css = code.slice(start, end);
 
-                            if (options.postcss) {
-                                const { plugins, options: opts } =
-                                    await currentConfigPostCss;
+                            if (options.postcss && currentConfigPostCss) {
+                                const { plugins } = await currentConfigPostCss;
                                 const result = await postcss(plugins).process(
                                     css,
                                     {
