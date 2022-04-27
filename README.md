@@ -16,6 +16,25 @@ import style from "./style.css";
 console.log(style.href);
 ```
 
+# [@uppercod/esbuild-css-literals](./packages/esbuild-css-literals/README.md)
+
+This plugin allows to transform the css literals either by minifying them or preprocessing them with postcss
+
+```js
+import pluginCssLiterals from "@uppercod/esbuild-css-literals";
+import esbuild from "esbuild";
+
+await esbuild.build({
+    entryPoints: ["./tests/example.jsx"],
+    plugins: [
+        pluginCssLiterals({
+            minify: true,
+            postcss: true,
+        }),
+    ],
+});
+```
+
 ## Todo
 
 ### @uppercod/esbuild-globs 💡
