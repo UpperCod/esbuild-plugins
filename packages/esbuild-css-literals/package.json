@@ -1,7 +1,7 @@
 {
     "name": "@uppercod/esbuild-css-literals",
     "type": "module",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "This plugin allows to transform the css literals either by minifying them or preprocessing them with postcss",
     "main": "./plugin.cjs",
     "module": "./src/plugin.js",
